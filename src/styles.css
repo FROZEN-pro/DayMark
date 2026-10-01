@@ -1,0 +1,166 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme {
+  --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Newsreader", ui-serif, Georgia, "Times New Roman", serif;
+
+  --color-bg: #f3efe7;
+  --color-bg-elevated: #fffdf8;
+  --color-bg-subtle: #e8e2d6;
+  --color-studio: #cfc6b6;
+  --color-fg: #1c1917;
+  --color-fg-muted: #5c574f;
+  --color-fg-subtle: #8a847c;
+  --color-accent: #2c4a4e;
+  --color-accent-fg: #f3efe7;
+  --color-border: color-mix(in oklab, var(--color-fg) 12%, transparent);
+  --color-border-strong: color-mix(in oklab, var(--color-fg) 22%, transparent);
+  --color-danger: #8f3d32;
+  --color-danger-fg: #f3efe7;
+  --color-good: #3f5e4a;
+  --color-good-fg: #f3efe7;
+
+  --color-habit-sage: #4f6f58;
+  --color-habit-ocean: #3d5a6c;
+  --color-habit-clay: #a05a42;
+  --color-habit-cedar: #6b5344;
+  --color-habit-slate: #4a5560;
+  --color-habit-rose: #7a4b55;
+  --color-habit-moss: #3f5c4a;
+  --color-habit-dusk: #4a4e62;
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+
+  --shadow-border:
+    0 0 0 1px color-mix(in oklab, var(--color-fg) 8%, transparent),
+    0 1px 2px -1px color-mix(in oklab, var(--color-fg) 6%, transparent),
+    0 8px 24px -12px color-mix(in oklab, var(--color-fg) 12%, transparent);
+  --shadow-phone:
+    0 40px 80px -24px color-mix(in oklab, var(--color-fg) 40%, transparent),
+    0 0 0 1px color-mix(in oklab, var(--color-fg) 10%, transparent);
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-micro: 80ms;
+  --motion-quick: 150ms;
+  --motion-fast: 250ms;
+  --motion-slow: 400ms;
+  --motion-scale-modal: 0.96;
+}
+
+html.dark {
+  --color-bg: #161411;
+  --color-bg-elevated: #1f1c18;
+  --color-bg-subtle: #2a2621;
+  --color-studio: #0f0e0c;
+  --color-fg: #f3efe7;
+  --color-fg-muted: #b7b0a6;
+  --color-fg-subtle: #8a847c;
+  --color-accent: #c5d0d2;
+  --color-accent-fg: #161411;
+  --color-danger: #e08a7e;
+  --color-danger-fg: #161411;
+  --color-good: #9bbba4;
+  --color-good-fg: #161411;
+  --color-habit-sage: #8fbf9a;
+  --color-habit-ocean: #8aa9bb;
+  --color-habit-clay: #d08b72;
+  --color-habit-cedar: #c4a28c;
+  --color-habit-slate: #a8b2bc;
+  --color-habit-rose: #c48b96;
+  --color-habit-moss: #8fb39a;
+  --color-habit-dusk: #a7abc2;
+  --shadow-border: 0 0 0 1px color-mix(in oklab, var(--color-fg) 10%, transparent);
+  --shadow-phone: 0 40px 80px -24px rgb(0 0 0 / 0.55), 0 0 0 1px rgb(255 255 255 / 0.06);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html,
+  body,
+  #app {
+    min-height: 100dvh;
+    background: var(--color-studio);
+    color: var(--color-fg);
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  html[data-scale="large"] {
+    font-size: 112.5%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.check-pop {
+  animation: check-pop var(--motion-fast) var(--ease-smooth-out);
+}
+
+@keyframes check-pop {
+  from {
+    transform: scale(0.96);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.stagger-in > * {
+  animation: rise var(--motion-slow) var(--ease-smooth-out) both;
+}
+.stagger-in > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-in > *:nth-child(2) { animation-delay: 40ms; }
+.stagger-in > *:nth-child(3) { animation-delay: 80ms; }
+.stagger-in > *:nth-child(4) { animation-delay: 120ms; }
+.stagger-in > *:nth-child(5) { animation-delay: 160ms; }
+.stagger-in > *:nth-child(6) { animation-delay: 200ms; }
+.stagger-in > *:nth-child(7) { animation-delay: 240ms; }
+.stagger-in > *:nth-child(8) { animation-delay: 280ms; }
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
